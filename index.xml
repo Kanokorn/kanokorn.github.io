@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>All blog posts here on May Chongnguluam</title>
-    <link>http://example.org/</link>
+    <link>https://kanokorn.github.io/</link>
     <description>Recent content in All blog posts here on May Chongnguluam</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 24 Aug 2019 18:17:47 +0700</lastBuildDate>
     
-	<atom:link href="http://example.org/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://kanokorn.github.io/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Test refactoring with Table-driven</title>
-      <link>http://example.org/posts/test-refactoring-with-table-driven/</link>
+      <link>https://kanokorn.github.io/posts/test-refactoring-with-table-driven/</link>
       <pubDate>Sat, 24 Aug 2019 18:17:47 +0700</pubDate>
       
-      <guid>http://example.org/posts/test-refactoring-with-table-driven/</guid>
+      <guid>https://kanokorn.github.io/posts/test-refactoring-with-table-driven/</guid>
       <description>I used table-driven to refacotor my code. The output is now easier to add more test cases without having to create a new test case. We only need to add input and output. Also easier to read.</description>
     </item>
     
