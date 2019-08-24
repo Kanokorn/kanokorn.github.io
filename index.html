@@ -33,7 +33,7 @@
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://kanokorn.github.io/" />
 
-<meta property="og:updated_time" content="2019-08-24T18:17:47+07:00" />
+<meta property="og:updated_time" content="2019-08-24T21:22:20+07:00" />
 <meta itemprop="name" content="All blog posts here">
 <meta itemprop="description" content="I hope you like it">
 
@@ -135,6 +135,37 @@
 
       <section class="w-100 mw8">
         
+        
+          <div class="relative w-100 mb4">
+            
+<article class="bb b--black-10">
+  <div class="db pv4 ph3 ph0-l no-underline dark-gray">
+    <div class="flex flex-column flex-row-ns">
+      
+      <div class="blah w-100">
+        <h1 class="f3 fw1 athelas mt0 lh-title">
+          <a href="/posts/variables-objects-and-references-in-ruby/" class="color-inherit dim link">
+            Variables, objects, and references in Ruby
+            </a>
+        </h1>
+        <div class="f6 f5-l lh-copy nested-copy-line-height nested-links">
+          วันนี้นั่งอ่านหนังสือ The well-grounded rubyist ของ David A.Black and Joseph Leo เจอหัวข้อที่น่าสนใจที่จะมาแชร์ให้ฟัง เป็นเรื่องของการกำหนดตัวแปรในภาษา Ruby
+มาเริ่มกันที่โค้ดนี้เลยค่ะ ผลลัพธ์จะได้อะไรเอ่ย
+str = &quot;Hello&quot; abc = str str.replace(&quot;Goodbye&quot;) puts str puts abc  จะได้แบบนี้ค่ะ
+Goodbye Goodbye  เอ&hellip; ทำไมตัวแปร abc ถึงเปลี่ยนค่าได้ล่ะ เราเปลี่ยนค่าที่ตัวแปร str อย่างเดียวนี่นา
+คำตอบก็คือ เวลาที่เรากำหนดค่าให้ตัวแปร มันจะ copy reference ของ object str ไปให้ abc มันจะไม่ได้ copy value ไปนั่นเอง
+ถ้าทำเป็นภาพให้เข้าใจง่ายๆ ก็คือตัวแปร str และ abc มันแค่ชี้ไปที่กล่องข้อมูลอันเดียวกัน
+ทีนี้ถ้าเรามีการเปลี่ยนแปลงกล่องข้อมูลที่มีข้อความ Hello อยู่ไปเป็นค่าอื่นเช่น การเรียก method replace ผ่านตัวแปร str
+เวลาเราแสดงค่า abc เราก็จะเห็นค่าเปลี่ยนไปด้วย เพราะสองตัวแปรนี้มันชี้ไปที่ object ตัวเดียวกันนั่นเอง
+        </div>
+          <a href="/posts/variables-objects-and-references-in-ruby/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+        
+      </div>
+    </div>
+  </div>
+</article>
+
+          </div>
         
           <div class="relative w-100 mb4">
             

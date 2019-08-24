@@ -33,7 +33,7 @@
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://kanokorn.github.io/posts/" />
 
-<meta property="og:updated_time" content="2019-08-24T18:17:47+07:00" />
+<meta property="og:updated_time" content="2019-08-24T21:22:20+07:00" />
 <meta itemprop="name" content="Posts">
 <meta itemprop="description" content="">
 
@@ -109,6 +109,28 @@
   <article class="pa3 pa4-ns nested-copy-line-height nested-img">
     <section class="cf ph3 ph5-l pv3 pv4-l f4 tc-l center measure-wide lh-copy mid-gray"></section>
     <section class="flex-ns flex-wrap justify-around mt5">
+      
+        <div class="relative w-100 w-30-l mb4 bg-white"><div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="/posts/variables-objects-and-references-in-ruby/" class="link black dim">
+        Variables, objects, and references in Ruby
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      วันนี้นั่งอ่านหนังสือ The well-grounded rubyist ของ David A.Black and Joseph Leo เจอหัวข้อที่น่าสนใจที่จะมาแชร์ให้ฟัง เป็นเรื่องของการกำหนดตัวแปรในภาษา Ruby
+มาเริ่มกันที่โค้ดนี้เลยค่ะ ผลลัพธ์จะได้อะไรเอ่ย
+str = &quot;Hello&quot; abc = str str.replace(&quot;Goodbye&quot;) puts str puts abc  จะได้แบบนี้ค่ะ
+Goodbye Goodbye  เอ&hellip; ทำไมตัวแปร abc ถึงเปลี่ยนค่าได้ล่ะ เราเปลี่ยนค่าที่ตัวแปร str อย่างเดียวนี่นา
+คำตอบก็คือ เวลาที่เรากำหนดค่าให้ตัวแปร มันจะ copy reference ของ object str ไปให้ abc มันจะไม่ได้ copy value ไปนั่นเอง
+ถ้าทำเป็นภาพให้เข้าใจง่ายๆ ก็คือตัวแปร str และ abc มันแค่ชี้ไปที่กล่องข้อมูลอันเดียวกัน
+ทีนี้ถ้าเรามีการเปลี่ยนแปลงกล่องข้อมูลที่มีข้อความ Hello อยู่ไปเป็นค่าอื่นเช่น การเรียก method replace ผ่านตัวแปร str
+เวลาเราแสดงค่า abc เราก็จะเห็นค่าเปลี่ยนไปด้วย เพราะสองตัวแปรนี้มันชี้ไปที่ object ตัวเดียวกันนั่นเอง
+    </div>
+  </div>
+</div>
+</div>
       
         <div class="relative w-100 w-30-l mb4 bg-white"><div class="relative w-100 mb4 bg-white nested-copy-line-height">
   <div class="bg-white mb3 pa4 gray overflow-hidden">
