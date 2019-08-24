@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     
-    <title>May Chongnguluam  | All blog posts here</title>
+    <title>May Chongnguluam  | Test refactoring with Table-driven</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
     <meta name="generator" content="Hugo 0.57.2" />
     
@@ -24,31 +24,38 @@
     
 
     
-      <link href="http://example.org/index.xml" rel="alternate" type="application/rss+xml" title="May Chongnguluam" />
-      <link href="http://example.org/index.xml" rel="feed" type="application/rss+xml" title="May Chongnguluam" />
-    
 
-    <meta property="og:title" content="All blog posts here" />
-<meta property="og:description" content="I hope you like it" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="http://example.org/" />
+    <meta property="og:title" content="Test refactoring with Table-driven" />
+<meta property="og:description" content="I used table-driven to refacotor my code. The output is now easier to add more test cases without having to create a new test case. We only need to add input and output. Also easier to read." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/posts/test-refactoring-with-table-driven/" />
+<meta property="article:published_time" content="2019-08-24T18:17:47+07:00" />
+<meta property="article:modified_time" content="2019-08-24T18:17:47+07:00" />
+<meta itemprop="name" content="Test refactoring with Table-driven">
+<meta itemprop="description" content="I used table-driven to refacotor my code. The output is now easier to add more test cases without having to create a new test case. We only need to add input and output. Also easier to read.">
 
-<meta property="og:updated_time" content="2019-08-24T18:17:47+07:00" />
-<meta itemprop="name" content="All blog posts here">
-<meta itemprop="description" content="I hope you like it">
 
+<meta itemprop="datePublished" content="2019-08-24T18:17:47&#43;07:00" />
+<meta itemprop="dateModified" content="2019-08-24T18:17:47&#43;07:00" />
+<meta itemprop="wordCount" content="262">
+
+
+
+<meta itemprop="keywords" content="" />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="All blog posts here"/>
-<meta name="twitter:description" content="I hope you like it"/>
+<meta name="twitter:title" content="Test refactoring with Table-driven"/>
+<meta name="twitter:description" content="I used table-driven to refacotor my code. The output is now easier to add more test cases without having to create a new test case. We only need to add input and output. Also easier to read."/>
 
   </head>
 
   <body class="ma0 avenir bg-near-white">
 
     
+   
+  
 
   <header>
-    <div class="pb3-m pb6-l bg-black">
+    <div class="bg-black">
       <nav class="pv3 ph3 ph4-ns" role="navigation">
   <div class="flex-l justify-between items-center center">
     <a href="http://example.org/" class="f3 fw2 hover-white no-underline white-90 dib">
@@ -94,78 +101,105 @@
   </div>
 </nav>
 
-      <div class="tc-l pv3 ph3 ph4-ns">
-        <h1 class="f2 f-subheadline-l fw2 light-silver mb0 lh-title">
-          All blog posts here
-        </h1>
-        
-          <h2 class="fw1 f5 f3-l white-80 measure-wide-l center lh-copy mt3 mb4">
-            I hope you like it
-          </h2>
-        
-      </div>
     </div>
   </header>
 
 
+
     <main class="pb7" role="main">
       
-  <article class="cf ph3 ph5-l pv3 pv4-l f4 tc-l center measure-wide lh-copy mid-gray">
-    
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+
+    <header class="mt4 w-100">
+      <p class="f6 b helvetica tracked">
+          
+        POSTS
+      </p>
+      <h1 class="f1 athelas mb1">Test refactoring with Table-driven</h1>
+      
+      <time class="f6 mv4 dib tracked" datetime="2019-08-24T18:17:47&#43;07:00">August 24, 2019</time>
+      
+      
+    </header>
+
+    <section class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-two-thirds-l"><p>I used table-driven tests to refactor my code. I found this technique in Andrew Gerrand slide while he was talking at <a href="https://talks.golang.org/2014/testing.slide#1">Testing Technique</a> in Google I/O 2014. I want to share this technique because it makes my code look better.</p>
+
+<p>For example, I want to truncate a string to 20 characters in Go, which have 3 cases as shown below:</p>
+
+<ul>
+<li>string length shorter than 20 characters (abcdefghi)</li>
+<li>string length equal 20 characters (abcdefghijklmnopqrst)</li>
+<li>string length longer than 20 characters  (abcdefghijklmnopqrstuvwxyz)</li>
+</ul>
+
+<p>Here is my “Truncate” function:</p>
+
+<pre><code>func Truncate(str string, limit int) string {
+     originalString := str
+     rs := []rune(originalString)
+
+     if len(rs) &gt; limit {
+           originalString = string(rs[0:limit])
+     }
+
+     return originalString
+}
+</code></pre>
+
+<p>Below is my old test before refactoring:</p>
+
+<pre><code>func TestTruncate_LengthLessThan20(t *testing.T) {
+        result := Truncate(&quot;abcdefghi&quot;)
+        require.Equal(t, &quot;abcdefghi&quot;, result)
+}
+func TestTruncate_LengthEqual20(t *testing.T) {
+        result := Truncate(&quot;abcdefghijklmnopqrst&quot;)
+        require.Equal(t, &quot;abcdefghijklmnopqrst&quot;, result)
+}
+func TestTruncate_LengthMoreThan20(t *testing.T) {
+        result := Truncate(&quot;abcdefghijklmnopqrstuvwxyz&quot;)
+        require.Equal(t, &quot;abcdefghijklmnopqrst&quot;, result)
+}
+</code></pre>
+
+<p>We can refactor it by using go struct to create table-driven tests like this:</p>
+
+<pre><code>func TestTruncateString(t *testing.T) {
+     var flagtests = []struct {
+         input  string
+         output string
+     }{  // input                         output
+         {  &quot;abcdefghi&quot;,                  &quot;abcdefghi&quot;},
+         {  &quot;abcdefghijklmnopqrst&quot;,       &quot;abcdefghijklmnopqrst&quot;},
+         {  &quot;abcdefghijklmnopqrstuvwxyz&quot;, &quot;abcdefghijklmnopqrst&quot;},
+     }
+     for _, tt := range flagtests {
+         require.Equal(t, tt.output, Truncate(tt.input, 20))
+     }
+}
+</code></pre>
+
+<p>See! Our test is now easier to add more test cases without having to create a new test case. We only need to add input and output. Also easier to read. You can play truncate feature <a href="https://play.golang.org/p/Ld0ErosWhd2">here</a></p>
+
+<p>That’s all for today. I hope you like my post. I would be glad to hear your opinions about the content.</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6">
+      
+      
+      </div>
+    </section>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
   </article>
-  
-  
-  
-  
-  
-  
-  
-    
-    
-
-    <div class="pa3 pa4-ns w-100 w-70-ns center">
-      
-       
-          <h1 class="flex-none">
-            Recent Posts
-          </h1>
-        
-
-      
-
-      <section class="w-100 mw8">
-        
-        
-          <div class="relative w-100 mb4">
-            
-<article class="bb b--black-10">
-  <div class="db pv4 ph3 ph0-l no-underline dark-gray">
-    <div class="flex flex-column flex-row-ns">
-      
-      <div class="blah w-100">
-        <h1 class="f3 fw1 athelas mt0 lh-title">
-          <a href="/posts/test-refactoring-with-table-driven/" class="color-inherit dim link">
-            Test refactoring with Table-driven
-            </a>
-        </h1>
-        <div class="f6 f5-l lh-copy nested-copy-line-height nested-links">
-          I used table-driven to refacotor my code. The output is now easier to add more test cases without having to create a new test case. We only need to add input and output. Also easier to read.
-        </div>
-          <a href="/posts/test-refactoring-with-table-driven/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-        
-      </div>
-    </div>
-  </div>
-</article>
-
-          </div>
-        
-      </section>
-
-      
-
-      </div>
-  
 
     </main>
     <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
